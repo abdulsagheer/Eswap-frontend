@@ -1,0 +1,46 @@
+section {
+	.header {
+		margin: 35px 0;
+		font-size: 30px;
+	}
+
+	.stats-values {
+		padding: 2rem;
+		background: #030b1e;
+		border: 1px solid rgba(42, 71, 113, 0.5);
+		box-shadow: inset 7px 7px 16px 1px #262b38;
+		border-radius: 20px;
+
+		.statistics {
+			display: flex;
+			justify-content: space-between;
+			margin-top: 40px;
+
+			.stats-value {
+				.stat-header {
+					font-weight: 400;
+					font-size: 18px;
+					color: #73aed2;
+				}
+
+				.price {
+					margin-top: 10px;
+					font-weight: 700;
+					font-size: 32px;
+					color: #ffffff;
+
+					.percentage {
+						font-weight: 600;
+						font-size: 14px;
+						color: #0bbe07;
+						padding-left: 10px;
+					}
+				}
+			}
+		}
+	}
+
+	.graphs {
+		margin-top: 20px;
+	}
+}

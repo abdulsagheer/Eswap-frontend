@@ -1,0 +1,65 @@
+section {
+	.header {
+		margin: 35px 0;
+		font-size: 30px;
+	}
+
+	.pool-values {
+		padding: 2rem;
+		background: #030b1e;
+		border: 1px solid rgba(42, 71, 113, 0.5);
+		box-shadow: inset 7px 7px 16px 1px #262b38;
+		border-radius: 20px;
+
+		.pool-token {
+			font-weight: 700;
+			font-size: 28px;
+			color: #ffffff;
+			margin-left: 5px;
+		}
+
+		.pool-price {
+			background: #041938;
+			border: 0.5px solid #ffffff;
+			border-radius: 100px;
+			font-weight: 700;
+			font-size: 18px;
+			text-align: center;
+			color: #ffffff;
+			padding: 16px;
+			margin-left: 16px;
+		}
+
+		.statistics {
+			display: flex;
+			justify-content: space-between;
+			margin-top: 40px;
+
+			.pool-value {
+				.pool-header {
+					font-weight: 400;
+					font-size: 18px;
+					color: #73aed2;
+				}
+
+				.price {
+					font-weight: 700;
+					font-size: 32px;
+					color: #ffffff;
+					margin-top: 10px;
+
+					.percentage {
+						font-weight: 700;
+						font-size: 32px;
+						color: #0bbe07;
+						padding-left: 10px;
+					}
+				}
+			}
+		}
+	}
+
+	.graphs {
+		margin-top: 20px;
+	}
+}

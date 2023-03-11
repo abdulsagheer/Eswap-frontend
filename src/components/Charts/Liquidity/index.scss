@@ -1,0 +1,47 @@
+.liquidity {
+	background: #030b1e;
+	border: 1px solid rgba(42, 71, 113, 0.5);
+	box-shadow: inset 7px 7px 16px 1px #262b38;
+	border-radius: 20px;
+	padding: 40px 20px;
+	min-width: 40%;
+
+	.highcharts-background {
+		fill: #030b1e !important;
+		--darkreader-inline-fill: #030b1e !important;
+	}
+
+	.highcharts-title {
+		display: none;
+	}
+
+	.graph-tabs {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+
+		.graph-info {
+			padding: 0 0 20px 30px;
+		}
+
+		.graph-title {
+			font-weight: 400;
+			font-size: 18px;
+			color: #73aed2;
+		}
+		.graph-price {
+			font-weight: 700;
+			font-size: 32px;
+			color: #ffffff;
+		}
+
+		.filter {
+			display: inline;
+
+			.ant-tabs-tab-active {
+				background: #052e64 !important;
+				border-color: #052e64 !important;
+			}
+		}
+	}
+}
