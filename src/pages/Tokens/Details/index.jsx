@@ -372,9 +372,16 @@ const TokenDetails = () => {
 					<div className="token-value">
 						<div className="token-header">Price(24h)</div>
 						<div className="price">
-							<span className="percentage">
-								<img src={Upwards} alt="upwards" width={20} height={30} />$
-								{Math.round(priceChange * 100) / 100}
+							<span
+								className="percentage"
+								style={{ color: `${priceChange < 0 ? "red" : "green"}` }}>
+								<img
+									src={priceChange < 0 ? Downwards : Upwards}
+									alt="upwards"
+									width={20}
+									height={30}
+								/>
+								{Math.round(priceChange * 100) / 100}%
 							</span>
 						</div>
 					</div>
@@ -385,9 +392,16 @@ const TokenDetails = () => {
 					<div className="token-value">
 						<div className="token-header">Volume(24h) change</div>
 						<div className="price">
-							<span className="percentage">
-								<img src={Upwards} alt="upwards" width={20} height={30} />$
-								{Math.round(volumeChange * 100) / 100}
+							<span
+								className="percentage"
+								style={{ color: `${volumeChange < 0 ? "red" : "green"}` }}>
+								<img
+									src={volumeChange < 0 ? Downwards : Upwards}
+									alt="upwards"
+									width={20}
+									height={30}
+								/>
+								{Math.round(volumeChange * 100) / 100}%
 							</span>
 						</div>
 					</div>

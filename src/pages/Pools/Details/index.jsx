@@ -2,13 +2,13 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./index.scss";
 import Upwards from "../../../assets/images/upwards.svg";
+import Downwards from "../../../assets/images/downwards.svg";
 import Cmdx from "../../../assets/images/cmdx.png";
 import { Col, Row } from "../../../components/common";
 import Liquidity from "../../../components/Charts/Liquidity";
 import Volume from "../../../components/Charts/Volume";
 import { fetchPoolById } from "../../../redux/pools/slice";
 import { useSelector, useDispatch } from "react-redux";
-import Downwards from "../../../assets/images/downwards.svg";
 
 const PoolDetails = () => {
 	const { id } = useParams();
@@ -46,8 +46,15 @@ const PoolDetails = () => {
 					<div className="pool-value">
 						<div className="pool-header">Liquidity(24h) change</div>
 						<div className="price">
-							<span className="percentage">
-								<img src={Upwards} alt="upwards" width={20} height={30} />
+							<span
+								className="percentage"
+								style={{ color: `${liquidity < 0 ? "red" : "green"}` }}>
+								<img
+									src={liquidity < 0 ? Downwards : Upwards}
+									alt="upwards"
+									width={20}
+									height={30}
+								/>
 								{Math.round(liquidity * 100) / 100}%
 							</span>
 						</div>
