@@ -372,7 +372,7 @@ const Pools = () => {
 					/>
 				</Col>
 			</Row>
-			<div className="custom-table  pools-table">
+			<div className="custom-table pools-table">
 				<Table
 					dataSource={data}
 					columns={columns}

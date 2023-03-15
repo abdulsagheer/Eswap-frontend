@@ -1,3 +1,4 @@
+@import "../../../assets/scss/mediaQuery.scss";
 @import "../../../assets/scss/variables.scss";
 
 section {
@@ -16,6 +17,10 @@ section {
 		border: 1px solid rgba(42, 71, 113, 0.5);
 		box-shadow: inset 7px 7px 16px 1px #262b38;
 		border-radius: 20px;
+
+		@include mq900px {
+			text-align: center;
+		}
 
 		.token-header {
 			font-weight: 700;
@@ -41,7 +46,16 @@ section {
 			justify-content: space-between;
 			margin-top: 40px;
 
+			@include mq900px {
+				text-align: center;
+				flex-direction: column;
+			}
+
 			.token-value {
+				@include mq900px {
+					margin-top: 40px;
+				}
+
 				.token-header {
 					font-weight: 400;
 					font-size: 18px;

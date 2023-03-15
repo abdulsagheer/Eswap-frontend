@@ -1,4 +1,5 @@
 @import "../../assets/scss/variables.scss";
+@import "../../assets/scss/mediaQuery.scss";
 
 .pools-section {
 	font-weight: 600;
@@ -49,6 +50,11 @@
 		}
 
 		.pools-table {
+			@include mq900px {
+				width: 100%;
+				overflow-x: scroll;
+			}
+
 			.pools-withicon {
 				display: flex;
 				align-items: center;
@@ -166,6 +172,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
+
 	.text {
 		.dark-mode & {
 			color: white;

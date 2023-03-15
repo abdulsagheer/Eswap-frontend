@@ -421,6 +421,7 @@ const TokenDetails = () => {
 				</Col>
 			</Row>
 			<div
+				className="header"
 				style={{
 					fontWeight: "600",
 					fontSize: "32px",

@@ -1,3 +1,5 @@
+@import "../../assets/scss/mediaQuery.scss";
+
 .logo {
 	img {
 		width: 119px;
@@ -15,8 +17,18 @@
 	background: transparent;
 	border-color: transparent;
 
+	@include mq600px {
+		margin: 0 5px;
+		justify-content: space-between;
+	}
+
 	.navbar-item {
 		margin: 0 15px;
+
+		@include mq600px {
+			margin: 0 5px;
+		}
+
 		a {
 			color: gray !important;
 			font-weight: bold;
@@ -35,6 +47,10 @@
 	font-weight: 500;
 	font-size: 18px;
 	color: #ffffff;
+
+	@include mq900px {
+		display: none;
+	}
 
 	button {
 		background: #fe4350;

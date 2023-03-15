@@ -1,7 +1,13 @@
+@import "../../assets/scss/mediaQuery.scss";
+
 section {
 	.header {
 		margin: 35px 0;
 		font-size: 30px;
+
+		@include mq900px {
+			text-align: center;
+		}
 	}
 
 	.stats-values {
@@ -10,13 +16,30 @@ section {
 		border: 1px solid rgba(42, 71, 113, 0.5);
 		box-shadow: inset 7px 7px 16px 1px #262b38;
 		border-radius: 20px;
+		display: flex;
+		flex-direction: column;
+
+		.logo {
+			@include mq900px {
+				text-align: center;
+			}
+		}
 
 		.statistics {
 			display: flex;
 			justify-content: space-between;
 			margin-top: 40px;
 
+			@include mq900px {
+				text-align: center;
+				flex-direction: column;
+			}
+
 			.stats-value {
+				@include mq900px {
+					margin-top: 40px;
+				}
+
 				.stat-header {
 					font-weight: 400;
 					font-size: 18px;
@@ -42,5 +65,6 @@ section {
 
 	.graphs {
 		margin-top: 20px;
+		
 	}
 }

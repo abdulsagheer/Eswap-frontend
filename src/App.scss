@@ -1,3 +1,10 @@
+@import "./assets/scss/mediaQuery.scss";
+
 .App {
 	margin: 0 40px;
+
+	@include mq700px {
+		margin: 0 10px;
+		overflow-x: hidden;
+	}
 }

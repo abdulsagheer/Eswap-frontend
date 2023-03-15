@@ -1,3 +1,5 @@
+@import "../../../assets/scss/mediaQuery.scss";
+
 .liquidity {
 	background: #030b1e;
 	border: 1px solid rgba(42, 71, 113, 0.5);
@@ -37,6 +39,23 @@
 
 		.filter {
 			display: inline;
+
+			.tabs {
+				display: flex;
+
+				@include mq700px {
+					flex-direction: column;
+					margin: 0 10px;
+				}
+
+				.tabs-col {
+					margin-right: 70px;
+
+					@include mq890px {
+						margin-right: 0px;
+					}
+				}
+			}
 
 			.ant-tabs-tab-active {
 				background: #052e64 !important;

@@ -1,3 +1,5 @@
+@import "../../../assets/scss/mediaQuery.scss";
+
 .volume {
 	background: #030b1e;
 	border: 1px solid rgba(42, 71, 113, 0.5);
@@ -6,6 +8,10 @@
 	padding: 40px 20px;
 	margin-bottom: 20px;
 	min-width: 40%;
+
+	@include mq700px {
+		margin-top: 20px;
+	}
 
 	.highcharts-title {
 		display: none;
@@ -21,5 +27,11 @@
 	}
 	.comdex-tabs {
 		align-items: end;
+		margin: 10px 0;
+
+		@include mq700px {
+			align-items: center;
+			margin: 10px 0;
+		}
 	}
 }

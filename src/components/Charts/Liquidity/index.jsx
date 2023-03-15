@@ -3,11 +3,9 @@ import { Tabs } from "antd";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import "./index.scss";
-import { Col, Row, SvgIcon } from "../../common";
+import { Col, Row } from "../../common";
 import { fetchTokenHistory } from "../../../redux/tokens/slice";
 import { useSelector, useDispatch } from "react-redux";
-
-const { TabPane } = Tabs;
 
 const sampleData = [
 	{ x: 1, price: 10, liquidity: 5 },
@@ -135,8 +133,8 @@ const Liquidity = () => {
 					<div className="graph-price">$7,226,718</div>
 				</div>
 				<div className="filter">
-					<Row>
-						<Col>
+					<Row className="tabs">
+						<Col className="tabs-col">
 							<Tabs
 								defaultActiveKey="price"
 								className="comdex-tabs"

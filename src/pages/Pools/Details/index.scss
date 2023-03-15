@@ -1,3 +1,5 @@
+@import "../../../assets/scss/mediaQuery.scss";
+
 section {
 	.header {
 		margin: 35px 0;
@@ -10,6 +12,12 @@ section {
 		border: 1px solid rgba(42, 71, 113, 0.5);
 		box-shadow: inset 7px 7px 16px 1px #262b38;
 		border-radius: 20px;
+
+		.logo {
+			@include mq900px {
+				justify-content: space-between;
+			}
+		}
 
 		.pool-token {
 			font-weight: 700;
@@ -35,7 +43,16 @@ section {
 			justify-content: space-between;
 			margin-top: 40px;
 
+			@include mq900px {
+				text-align: center;
+				flex-direction: column;
+			}
+
 			.pool-value {
+				@include mq900px {
+					margin-top: 40px;
+				}
+
 				.pool-header {
 					font-weight: 400;
 					font-size: 18px;

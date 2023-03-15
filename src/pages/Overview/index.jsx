@@ -26,7 +26,7 @@ const Overview = () => {
 		<section>
 			<h1 className="header">Overview - cSwap</h1>
 			<div className="stats-values">
-				<div>
+				<div className="logo">
 					<img src={Swap} alt="swap" width={100} />
 				</div>
 				<div className="statistics">
