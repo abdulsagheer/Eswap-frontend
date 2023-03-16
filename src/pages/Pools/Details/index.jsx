@@ -10,6 +10,39 @@ import Volume from "../../../components/Charts/Volume";
 import { fetchPoolById } from "../../../redux/pools/slice";
 import { useSelector, useDispatch } from "react-redux";
 
+const sampleData = [
+	{ x: 1, price: 10, liquidity: 5 },
+	{ x: 2, price: 20, liquidity: 10 },
+	{ x: 3, price: 30, liquidity: 15 },
+	{ x: 4, price: 25, liquidity: 12 },
+	{ x: 5, price: 35, liquidity: 20 },
+	{ x: 6, price: 45, liquidity: 25 },
+	{ x: 7, price: 50, liquidity: 30 },
+];
+
+const SampleData = {
+	day: {
+		data: [1, 2, 3, 4, 5, 6, 7],
+		categories: [
+			"Monday",
+			"Tuesday",
+			"Wednesday",
+			"Thursday",
+			"Friday",
+			"Saturday",
+			"Sunday",
+		],
+	},
+	week: {
+		data: [10, 20, 30, 40, 50, 60],
+		categories: ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6"],
+	},
+	month: {
+		data: [100, 200, 300, 400, 500],
+		categories: ["January", "February", "March", "April", "May"],
+	},
+};
+
 const PoolDetails = () => {
 	const { id } = useParams();
 
@@ -90,10 +123,10 @@ const PoolDetails = () => {
 			<div className="header">CMDX - Volume & Liquidity</div>
 			<Row className="graphs">
 				<Col>
-					<Liquidity />
+					<Liquidity sampleData={sampleData} />
 				</Col>
 				<Col>
-					<Volume />
+					<Volume SampleData={SampleData} />
 				</Col>
 			</Row>
 		</section>
