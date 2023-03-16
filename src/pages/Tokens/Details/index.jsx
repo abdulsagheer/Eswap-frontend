@@ -10,7 +10,7 @@ import { Col, Row } from "../../../components/common";
 import Liquidity from "../../../components/Charts/Liquidity";
 import Volume from "../../../components/Charts/Volume";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchTokenById } from "../../../redux/tokens/slice";
+import { fetchTokenById, fetchTokenHistory } from "../../../redux/tokens/slice";
 
 const sampleData = [
 	{ x: 1, price: 10, liquidity: 5 },
@@ -50,12 +50,19 @@ const TokenDetails = () => {
 
 	const dispatch = useDispatch();
 	const tokensDetails = useSelector((state) => state.tokens.tokens?.data);
+	const tokensHistory = useSelector((state) => state.tokens.history?.data);
 
 	useEffect(() => {
 		dispatch(fetchTokenById(id));
 	}, [dispatch]);
 
+	useEffect(() => {
+		dispatch(fetchTokenHistory);
+	}, [dispatch]);
+
 	console.log("tokensDetails", tokensDetails);
+	console.log("tokens History", tokensHistory);
+
 	const price = tokensDetails?.price;
 	const volume = tokensDetails?.total_volume_24h;
 	const priceChange = tokensDetails?.price_24h_change;

@@ -7,7 +7,7 @@ import Cmdx from "../../../assets/images/cmdx.png";
 import { Col, Row } from "../../../components/common";
 import Liquidity from "../../../components/Charts/Liquidity";
 import Volume from "../../../components/Charts/Volume";
-import { fetchPoolById } from "../../../redux/pools/slice";
+import { fetchPoolById, fetchPoolsHistory } from "../../../redux/pools/slice";
 import { useSelector, useDispatch } from "react-redux";
 
 const sampleData = [
@@ -49,12 +49,19 @@ const PoolDetails = () => {
 	const dispatch = useDispatch();
 
 	const poolsDetails = useSelector((state) => state.pools.pools?.data);
+	const poolsHistory = useSelector((state) => state.pools?.history?.data);
 
 	useEffect(() => {
 		dispatch(fetchPoolById(id));
 	}, [dispatch]);
 
-	console.log("poolsDetails", poolsDetails);
+	useEffect(() => {
+		dispatch(fetchPoolsHistory());
+	}, [dispatch]);
+
+	console.log("pools Details", poolsDetails);
+	console.log("pools History", poolsHistory);
+
 	const totalLiquidity = poolsDetails?.total_liquidity;
 	const liquidity = poolsDetails?.total_liquidity_24h_change;
 	const volumeChange = poolsDetails?.total_volume_24h_change;

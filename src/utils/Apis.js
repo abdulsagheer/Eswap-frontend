@@ -44,7 +44,10 @@ export const api = {
 			return data;
 		},
 		getHistory: async () => {
-			const { data } = await AxiosRequest("GET", `${baseUrl}/CMDX-ATOM/600`);
+			const { data } = await AxiosRequest(
+				"GET",
+				`${baseUrl}/pair/history/CMDX-ATOM/600`
+			);
 			return data;
 		},
 	},
