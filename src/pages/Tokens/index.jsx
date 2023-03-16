@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./index.scss";
 import { Table, Input } from "antd";
 import cmdx from "../../assets/images/tokens/cmdx.svg";
@@ -9,258 +9,11 @@ import harbor from "../../assets/images/tokens/harbor.svg";
 import juno from "../../assets/images/tokens/juno.svg";
 import osmo from "../../assets/images/tokens/osmo.svg";
 import Upwards from "../../assets/images/upwards.svg";
+import Downwards from "../../assets/images/downwards.svg";
 import { Col, Row, SvgIcon } from "../../components/common";
 import { useNavigate } from "react-router";
-
-const data = [
-	{
-		key: "1",
-		token: "CMDX",
-		price: "$0.0999",
-		price24: (
-			<span style={{ color: "green" }}>
-				<img src={Upwards} alt="upwards" width={15} style={{ margin: "5px" }} />
-				5.75%
-			</span>
-		),
-		volume24: "$244, 567.90",
-		volume24change: (
-			<span style={{ color: "green" }}>
-				<img src={Upwards} alt="upwards" width={15} style={{ margin: "5px" }} />
-				5.75%
-			</span>
-		),
-		liquidity: "$21.65M",
-	},
-	{
-		key: "2",
-		token: "HARBOR",
-		price: "$0.0999",
-		price24: (
-			<span style={{ color: "green" }}>
-				<img src={Upwards} alt="upwards" width={15} style={{ margin: "5px" }} />
-				5.75%
-			</span>
-		),
-		volume24: "$244, 567.90",
-		volume24change: (
-			<span style={{ color: "green" }}>
-				<img src={Upwards} alt="upwards" width={15} style={{ margin: "5px" }} />
-				5.75%
-			</span>
-		),
-		liquidity: "$21.65M",
-	},
-	{
-		key: "3",
-		token: "CMST",
-		price: "$0.0999",
-		price24: (
-			<span style={{ color: "green" }}>
-				<img src={Upwards} alt="upwards" width={15} style={{ margin: "5px" }} />
-				5.75%
-			</span>
-		),
-		volume24: "$244, 567.90",
-		volume24change: (
-			<span style={{ color: "green" }}>
-				<img src={Upwards} alt="upwards" width={15} style={{ margin: "5px" }} />
-				5.75%
-			</span>
-		),
-		liquidity: "$21.65M",
-	},
-	{
-		key: "4",
-		token: "ATOM",
-		price: "$0.0999",
-		price24: (
-			<span style={{ color: "green" }}>
-				<img src={Upwards} alt="upwards" width={15} style={{ margin: "5px" }} />
-				5.75%
-			</span>
-		),
-		volume24: "$244, 567.90",
-		volume24change: (
-			<span style={{ color: "green" }}>
-				<img src={Upwards} alt="upwards" width={15} style={{ margin: "5px" }} />
-				5.75%
-			</span>
-		),
-		liquidity: "$21.65M",
-	},
-	{
-		key: "5",
-		token: "OSMO",
-		price: "$0.0999",
-		price24: (
-			<span style={{ color: "green" }}>
-				<img src={Upwards} alt="upwards" width={15} style={{ margin: "5px" }} />
-				5.75%
-			</span>
-		),
-		volume24: "$244, 567.90",
-		volume24change: (
-			<span style={{ color: "green" }}>
-				<img src={Upwards} alt="upwards" width={15} style={{ margin: "5px" }} />
-				5.75%
-			</span>
-		),
-		liquidity: "$21.65M",
-	},
-	{
-		key: "1",
-		token: "AKT",
-		price: "$0.0999",
-		price24: (
-			<span style={{ color: "green" }}>
-				<img src={Upwards} alt="upwards" width={15} style={{ margin: "5px" }} />
-				5.75%
-			</span>
-		),
-		volume24: "$244, 567.90",
-		volume24change: (
-			<span style={{ color: "green" }}>
-				<img src={Upwards} alt="upwards" width={15} style={{ margin: "5px" }} />
-				5.75%
-			</span>
-		),
-		liquidity: "$21.65M",
-	},
-	{
-		key: "6",
-		token: "JUNO",
-		price: "$0.0999",
-		price24: (
-			<span style={{ color: "green" }}>
-				<img src={Upwards} alt="upwards" width={15} style={{ margin: "5px" }} />
-				5.75%
-			</span>
-		),
-		volume24: "$244, 567.90",
-		volume24change: (
-			<span style={{ color: "green" }}>
-				<img src={Upwards} alt="upwards" width={15} style={{ margin: "5px" }} />
-				5.75%
-			</span>
-		),
-		liquidity: "$21.65M",
-	},
-	{
-		key: "7",
-		token: "JUNO",
-		price: "$0.0999",
-		price24: (
-			<span style={{ color: "green" }}>
-				<img src={Upwards} alt="upwards" width={15} style={{ margin: "5px" }} />
-				5.75%
-			</span>
-		),
-		volume24: "$244, 567.90",
-		volume24change: (
-			<span style={{ color: "green" }}>
-				<img src={Upwards} alt="upwards" width={15} style={{ margin: "5px" }} />
-				5.75%
-			</span>
-		),
-		liquidity: "$21.65M",
-	},
-	{
-		key: "8",
-		token: "CMDX",
-		price: "$0.0999",
-		price24: (
-			<span style={{ color: "green" }}>
-				<img src={Upwards} alt="upwards" width={15} style={{ margin: "5px" }} />
-				5.75%
-			</span>
-		),
-		volume24: "$244, 567.90",
-		volume24change: (
-			<span style={{ color: "green" }}>
-				<img src={Upwards} alt="upwards" width={15} style={{ margin: "5px" }} />
-				5.75%
-			</span>
-		),
-		liquidity: "$21.65M",
-	},
-	{
-		key: "9",
-		token: "CMDX",
-		price: "$0.0999",
-		price24: (
-			<span style={{ color: "green" }}>
-				<img src={Upwards} alt="upwards" width={15} style={{ margin: "5px" }} />
-				5.75%
-			</span>
-		),
-		volume24: "$244, 567.90",
-		volume24change: (
-			<span style={{ color: "green" }}>
-				<img src={Upwards} alt="upwards" width={15} style={{ margin: "5px" }} />
-				5.75%
-			</span>
-		),
-		liquidity: "$21.65M",
-	},
-	{
-		key: "10",
-		token: "CMDX",
-		price: "$0.0999",
-		price24: (
-			<span style={{ color: "green" }}>
-				<img src={Upwards} alt="upwards" width={15} style={{ margin: "5px" }} />
-				5.75%
-			</span>
-		),
-		volume24: "$244, 567.90",
-		volume24change: (
-			<span style={{ color: "green" }}>
-				<img src={Upwards} alt="upwards" width={15} style={{ margin: "5px" }} />
-				5.75%
-			</span>
-		),
-		liquidity: "$21.65M",
-	},
-	{
-		key: "1",
-		token: "CMDX",
-		price: "$0.0999",
-		price24: (
-			<span style={{ color: "green" }}>
-				<img src={Upwards} alt="upwards" width={15} style={{ margin: "5px" }} />
-				5.75%
-			</span>
-		),
-		volume24: "$244, 567.90",
-		volume24change: (
-			<span style={{ color: "green" }}>
-				<img src={Upwards} alt="upwards" width={15} style={{ margin: "5px" }} />
-				5.75%
-			</span>
-		),
-		liquidity: "$21.65M",
-	},
-	{
-		key: "11",
-		token: "CMDX",
-		price: "$0.0999",
-		price24: (
-			<span style={{ color: "green" }}>
-				<img src={Upwards} alt="upwards" width={15} style={{ margin: "5px" }} />
-				5.75%
-			</span>
-		),
-		volume24: "$244, 567.90",
-		volume24change: (
-			<span style={{ color: "green" }}>
-				<img src={Upwards} alt="upwards" width={15} style={{ margin: "5px" }} />
-				5.75%
-			</span>
-		),
-		liquidity: "$21.65M",
-	},
-];
+import { useSelector, useDispatch } from "react-redux";
+import { fetchTokens } from "../../redux/tokens/slice";
 
 const images = {
 	CMDX: cmdx,
@@ -274,6 +27,63 @@ const images = {
 
 const Tokens = () => {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const tokenData = useSelector((state) => state.tokens?.tokens?.data);
+
+	useEffect(() => {
+		dispatch(fetchTokens());
+	}, [dispatch]);
+
+	console.log("tokens", tokenData);
+
+	const tokens = tokenData?.map(
+		({
+			rank,
+			symbol,
+			price,
+			price_24h_change,
+			total_volume_24h,
+			total_volume_24h_change,
+			liquidity,
+		}) => {
+			return {
+				key: rank,
+				token: symbol,
+				price: `$${Math.round(price * 100) / 100}`,
+				price24: (
+					<span
+						style={{
+							color: `${price_24h_change < 0 ? "red" : "green"}`,
+						}}>
+						<img
+							src={price_24h_change < 0 ? Downwards : Upwards}
+							alt="upwards"
+							width={15}
+							style={{ margin: "5px" }}
+						/>
+						{Math.round(price_24h_change * 100) / 100}%
+					</span>
+				),
+				volume24: `$${Math.round(total_volume_24h * 100) / 100}`,
+				volume24change: (
+					<span
+						style={{
+							color: `${total_volume_24h_change < 0 ? "red" : "green"}`,
+						}}>
+						<img
+							src={total_volume_24h_change < 0 ? Downwards : Upwards}
+							alt="upwards"
+							width={15}
+							style={{ margin: "5px" }}
+						/>
+						{Math.round(total_volume_24h_change * 100) / 100}%
+					</span>
+				),
+				liquidity: `$${Math.round(liquidity * 100) / 100}`,
+			};
+		}
+	);
+
 	const columns = [
 		{
 			title: "Token",
@@ -334,11 +144,11 @@ const Tokens = () => {
 			</Row>
 			<div className="custom-table token-table">
 				<Table
-					dataSource={data}
+					dataSource={tokens}
 					columns={columns}
 					className="custom-table pools-table"
 					pagination={{
-						total: 10,
+						total: 20,
 						showSizeChanger: true,
 						defaultPageSize: 5,
 						pageSizeOptions: ["5", "10", "20", "50"],

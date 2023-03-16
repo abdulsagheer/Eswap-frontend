@@ -50,8 +50,8 @@
 		}
 
 		.pools-table {
-			@include mq900px {
-				width: 100%;
+			@include mq700px {
+				min-width: 100%;
 				overflow-x: scroll;
 			}
 

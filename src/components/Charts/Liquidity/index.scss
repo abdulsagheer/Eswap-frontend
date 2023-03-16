@@ -24,6 +24,10 @@
 
 		.graph-info {
 			padding: 0 0 20px 30px;
+
+			@include mq530px {
+				padding: 0 0 20px 5px;
+			}
 		}
 
 		.graph-title {
@@ -35,6 +39,11 @@
 			font-weight: 700;
 			font-size: 32px;
 			color: #ffffff;
+
+			@include mq530px {
+				font-weight: 700;
+				font-size: 25px;
+			}
 		}
 
 		.filter {

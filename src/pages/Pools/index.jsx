@@ -20,301 +20,54 @@ const Pools = () => {
 
 	console.log("poolsData", poolsData);
 
-	const pools = poolsData?.map((pool) => pool?.pair_id);
-	console.log("pools", pools);
+	const pools = poolsData?.map(
+		({
+			pair_id,
+			pair_symbol,
+			total_liquidity,
+			total_volume_24h,
+			total_volume_24h_change,
+			total_liquidity_24h_change,
+			base_coin_price,
+		}) => {
+			return {
+				key: pair_id,
+				pool: pair_symbol,
+				liquidity: `$${Math.round(total_liquidity * 100) / 100}`,
 
-	const data = [
-		{
-			key: "1",
-			pool: "CMDX/CMST",
-			liquidity: "$481,997.4",
-			volume: "$20,571.23",
-			volumeChange: (
-				<span style={{ color: "green" }}>
-					<img
-						src={Upwards}
-						alt="upwards"
-						width={15}
-						style={{ margin: "5px" }}
-					/>
-					5.75%
-				</span>
-			),
-			liquidityChange: (
-				<span style={{ color: "green" }}>
-					<img
-						src={Upwards}
-						alt="upwards"
-						width={15}
-						style={{ margin: "5px" }}
-					/>
-					5.75%
-				</span>
-			),
-			fees: "$0.06",
-		},
-		{
-			key: "2",
-			pool: "CMDX/CMST",
-			liquidity: "$481,997.4",
-			volume: "$20,571.23",
-			volumeChange: (
-				<span style={{ color: "green" }}>
-					<img
-						src={Upwards}
-						alt="upwards"
-						width={15}
-						style={{ margin: "5px" }}
-					/>
-					5.75%
-				</span>
-			),
-			liquidityChange: (
-				<span style={{ color: "green" }}>
-					<img
-						src={Upwards}
-						alt="upwards"
-						width={15}
-						style={{ margin: "5px" }}
-					/>
-					5.75%
-				</span>
-			),
-			fees: "$0.06",
-		},
-		{
-			key: "3",
-			pool: "CMDX/CMST",
-			liquidity: "$481,997.4",
-			volume: "$20,571.23",
-			volumeChange: (
-				<span style={{ color: "green" }}>
-					<img
-						src={Upwards}
-						alt="upwards"
-						width={15}
-						style={{ margin: "5px" }}
-					/>
-					5.75%
-				</span>
-			),
-			liquidityChange: (
-				<span style={{ color: "green" }}>
-					<img
-						src={Upwards}
-						alt="upwards"
-						width={15}
-						style={{ margin: "5px" }}
-					/>
-					5.75%
-				</span>
-			),
-			fees: "$0.06",
-		},
-		{
-			key: "4",
-			pool: "CMDX/CMST",
-			liquidity: "$481,997.4",
-			volume: "$20,571.23",
-			volumeChange: (
-				<span style={{ color: "green" }}>
-					<img
-						src={Upwards}
-						alt="upwards"
-						width={15}
-						style={{ margin: "5px" }}
-					/>
-					5.75%
-				</span>
-			),
-			liquidityChange: (
-				<span style={{ color: "green" }}>
-					<img
-						src={Upwards}
-						alt="upwards"
-						width={15}
-						style={{ margin: "5px" }}
-					/>
-					5.75%
-				</span>
-			),
-			fees: "$0.06",
-		},
-		{
-			key: "5",
-			pool: "CMDX/CMST",
-			liquidity: "$481,997.4",
-			volume: "$20,571.23",
-			volumeChange: (
-				<span style={{ color: "green" }}>
-					<img
-						src={Upwards}
-						alt="upwards"
-						width={15}
-						style={{ margin: "5px" }}
-					/>
-					5.75%
-				</span>
-			),
-			liquidityChange: (
-				<span style={{ color: "green" }}>
-					<img
-						src={Upwards}
-						alt="upwards"
-						width={15}
-						style={{ margin: "5px" }}
-					/>
-					5.75%
-				</span>
-			),
-			fees: "$0.06",
-		},
-		{
-			key: "6",
-			pool: "CMDX/CMST",
-			liquidity: "$481,997.4",
-			volume: "$20,571.23",
-			volumeChange: (
-				<span style={{ color: "green" }}>
-					<img
-						src={Upwards}
-						alt="upwards"
-						width={15}
-						style={{ margin: "5px" }}
-					/>
-					5.75%
-				</span>
-			),
-			liquidityChange: (
-				<span style={{ color: "green" }}>
-					<img
-						src={Upwards}
-						alt="upwards"
-						width={15}
-						style={{ margin: "5px" }}
-					/>
-					5.75%
-				</span>
-			),
-			fees: "$0.06",
-		},
-		{
-			key: "7",
-			pool: "CMDX/CMST",
-			liquidity: "$481,997.4",
-			volume: "$20,571.23",
-			volumeChange: (
-				<span style={{ color: "green" }}>
-					<img
-						src={Upwards}
-						alt="upwards"
-						width={15}
-						style={{ margin: "5px" }}
-					/>
-					5.75%
-				</span>
-			),
-			liquidityChange: (
-				<span style={{ color: "green" }}>
-					<img
-						src={Upwards}
-						alt="upwards"
-						width={15}
-						style={{ margin: "5px" }}
-					/>
-					5.75%
-				</span>
-			),
-			fees: "$0.06",
-		},
-		{
-			key: "8",
-			pool: "CMDX/CMST",
-			liquidity: "$481,997.4",
-			volume: "$20,571.23",
-			volumeChange: (
-				<span style={{ color: "green" }}>
-					<img
-						src={Upwards}
-						alt="upwards"
-						width={15}
-						style={{ margin: "5px" }}
-					/>
-					5.75%
-				</span>
-			),
-			liquidityChange: (
-				<span style={{ color: "green" }}>
-					<img
-						src={Upwards}
-						alt="upwards"
-						width={15}
-						style={{ margin: "5px" }}
-					/>
-					5.75%
-				</span>
-			),
-			fees: "$0.06",
-		},
-		{
-			key: "9",
-			pool: "CMDX/CMST",
-			liquidity: "$481,997.4",
-			volume: "$20,571.23",
-			volumeChange: (
-				<span style={{ color: "green" }}>
-					<img
-						src={Upwards}
-						alt="upwards"
-						width={15}
-						style={{ margin: "5px" }}
-					/>
-					5.75%
-				</span>
-			),
-			liquidityChange: (
-				<span style={{ color: "green" }}>
-					<img
-						src={Upwards}
-						alt="upwards"
-						width={15}
-						style={{ margin: "5px" }}
-					/>
-					5.75%
-				</span>
-			),
-			fees: "$0.06",
-		},
-		{
-			key: "10",
-			pool: "CMDX/CMST",
-			liquidity: "$481,997.4",
-			volume: "$20,571.23",
-			volumeChange: (
-				<span style={{ color: "green" }}>
-					<img
-						src={Upwards}
-						alt="upwards"
-						width={15}
-						style={{ margin: "5px" }}
-					/>
-					5.75%
-				</span>
-			),
-			liquidityChange: (
-				<span style={{ color: "green" }}>
-					<img
-						src={Upwards}
-						alt="upwards"
-						width={15}
-						style={{ margin: "5px" }}
-					/>
-					5.75%
-				</span>
-			),
-			fees: "$0.06",
-		},
-	];
+				volume: `$${Math.round(total_volume_24h * 100) / 100}`,
+				volumeChange: (
+					<span
+						style={{
+							color: `${total_volume_24h_change < 0 ? "red" : "green"}`,
+						}}>
+						<img
+							src={total_volume_24h_change < 0 ? Downwards : Upwards}
+							alt="upwards"
+							width={15}
+							style={{ margin: "5px" }}
+						/>
+						{Math.round(total_volume_24h_change * 100) / 100}%
+					</span>
+				),
+				liquidityChange: (
+					<span
+						style={{
+							color: `${total_liquidity_24h_change < 0 ? "red" : "green"}`,
+						}}>
+						<img
+							src={total_liquidity_24h_change < 0 ? Downwards : Upwards}
+							alt="upwards"
+							width={15}
+							style={{ margin: "5px" }}
+						/>
+						{Math.round(total_liquidity_24h_change * 100) / 100}%
+					</span>
+				),
+				fees: `$${Math.round(base_coin_price * 100) / 100}`,
+			};
+		}
+	);
 
 	const columns = [
 		{
@@ -374,11 +127,11 @@ const Pools = () => {
 			</Row>
 			<div className="custom-table pools-table">
 				<Table
-					dataSource={data}
+					dataSource={pools}
 					columns={columns}
 					className="custom-table pools-table"
 					pagination={{
-						total: 10,
+						total: 30,
 						showSizeChanger: true,
 						defaultPageSize: 5,
 						pageSizeOptions: ["5", "10", "20", "50"],

@@ -13,9 +13,26 @@ section {
 		box-shadow: inset 7px 7px 16px 1px #262b38;
 		border-radius: 20px;
 
-		.logo {
-			@include mq900px {
-				justify-content: space-between;
+		@include mq700px {
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.pool-coins {
+			img {
+				@include mq700px {
+					margin-left: 40%;
+					margin-bottom: 10px;
+				}
+			}
+			@include mq700px {
+				text-align: center;
+				display: flex;
+				flex-direction: column;
+				:nth-child(3) {
+					margin-top: 10px;
+				}
 			}
 		}
 

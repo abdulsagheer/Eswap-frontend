@@ -9,7 +9,7 @@ const initialState = {
 };
 
 export const fetchTokens = createAsyncThunk("tokens/fetchTokens", async () => {
-	const data = await api.tokens.fetchTokens();
+	const data = await api.tokens.getAllTokens();
 	return data;
 });
 export const fetchTokenById = createAsyncThunk(

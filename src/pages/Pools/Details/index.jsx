@@ -64,7 +64,7 @@ const PoolDetails = () => {
 		<section>
 			<h1 className="header">Pool Overview</h1>
 			<div className="pool-values">
-				<div>
+				<div className="pool-coins">
 					<img src={Cmdx} alt={"pool"} width="100" />
 					<span className="pool-token">{poolsDetails?.pair_symbol}</span>
 					<span className="pool-price">1 CMDX = 0.093064 CMST</span>
