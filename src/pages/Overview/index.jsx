@@ -85,25 +85,29 @@ const Overview = () => {
 						<div className="stat-header">24 hrs volume</div>
 						<div className="price">
 							${Math.round(volume24 * 100) / 100}
-							<span className="percentage">
+							{/* <span className="percentage">
 								<img src={Upwards} alt="upwards" />
 								5.02%
-							</span>
+							</span> */}
 						</div>
 					</div>
 					<div className="stats-value">
 						<div className="stat-header">CMDX Price</div>
 						<div className="price">
 							${Math.round(fee * 100) / 100}
-							<span className="percentage">
+							{/* <span className="percentage">
 								<img src={Upwards} alt="upwards" />
 								5.02%
-							</span>
+							</span> */}
 						</div>
 					</div>
 					<div className="stats-value">
 						<div className="stat-header">24 hrs volume change</div>
-						<div className="price">
+						<div
+							className="price"
+							style={{
+								color: `${volume24change < 0 ? "red" : "green"}`,
+							}}>
 							${Math.round(volume24change * 100) / 100}
 						</div>
 					</div>
