@@ -63,6 +63,10 @@
 					@include mq890px {
 						margin-right: 0px;
 					}
+
+					@include mq450px {
+						margin-left: 23%;
+					}
 				}
 			}
 
