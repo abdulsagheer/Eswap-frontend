@@ -67,7 +67,7 @@ const TokenDetails = () => {
 	const volume = tokensDetails?.total_volume_24h;
 	const priceChange = tokensDetails?.price_24h_change;
 	const volumeChange = tokensDetails?.total_volume_24h_change;
-	const liquidity = tokensDetails?.liquidity;
+	const liquidity = Math.round(tokensDetails?.liquidity * 100) / 100;
 
 	const data = [
 		{
@@ -454,7 +454,7 @@ const TokenDetails = () => {
 			<div className="header">CMDX - Volume & Liquidity</div>
 			<Row className="graphs">
 				<Col>
-					<Liquidity sampleData={sampleData} />
+					<Liquidity data={sampleData} liquidity={liquidity} />
 				</Col>
 				<Col>
 					<Volume data={tokensHistory} />

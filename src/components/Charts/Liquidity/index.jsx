@@ -5,7 +5,7 @@ import HighchartsReact from "highcharts-react-official";
 import "./index.scss";
 import { Col, Row } from "../../common";
 
-const Liquidity = ({ sampleData }) => {
+const Liquidity = ({ data, liquidity }) => {
 	const [activeTab, setActiveTab] = useState("price");
 	const [activeFilter, setActiveFilter] = useState("all");
 
@@ -51,7 +51,7 @@ const Liquidity = ({ sampleData }) => {
 	};
 
 	const getPriceOptions = () => {
-		const filteredData = getFilteredData(sampleData);
+		const filteredData = getFilteredData(data);
 		const options = {
 			title: {
 				text: "Price Graph",
@@ -110,7 +110,7 @@ const Liquidity = ({ sampleData }) => {
 			<div className="graph-tabs">
 				<div className="graph-info">
 					<div className="graph-title">Liquidity</div>
-					<div className="graph-price">$7,226,718</div>
+					<div className="graph-price">${liquidity}</div>
 				</div>
 				<div className="filter">
 					<Row className="tabs">

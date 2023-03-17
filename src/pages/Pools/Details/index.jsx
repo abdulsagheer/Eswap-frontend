@@ -39,7 +39,7 @@ const PoolDetails = () => {
 	console.log("pools Details", poolsDetails);
 	console.log("pools History", poolsHistory);
 
-	const totalLiquidity = poolsDetails?.total_liquidity;
+	const totalLiquidity = Math.round(poolsDetails?.total_liquidity * 100) / 100;
 	const liquidity = poolsDetails?.total_liquidity_24h_change;
 	const volumeChange = poolsDetails?.total_volume_24h_change;
 	const volumeColor = volumeChange < 0;
@@ -56,9 +56,7 @@ const PoolDetails = () => {
 				<div className="statistics">
 					<div className="pool-value">
 						<div className="pool-header">Liquidity</div>
-						<div className="price">
-							${Math.round(totalLiquidity * 100) / 100}
-						</div>
+						<div className="price">${totalLiquidity}</div>
 					</div>
 					<div className="pool-value">
 						<div className="pool-header">Liquidity(24h) change</div>
@@ -107,7 +105,7 @@ const PoolDetails = () => {
 			<div className="header">CMDX - Volume & Liquidity</div>
 			<Row className="graphs">
 				<Col>
-					<Liquidity sampleData={sampleData} />
+					<Liquidity data={sampleData} liquidity={totalLiquidity} />
 				</Col>
 				<Col>
 					<Volume data={poolsHistory} />

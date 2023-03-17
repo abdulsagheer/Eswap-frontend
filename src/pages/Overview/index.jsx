@@ -28,6 +28,11 @@ const Overview = () => {
 		(state) => state.overview?.history?.data
 	);
 
+	let liquidity =
+		Math.round(
+			(overviewData?.voume_24h / overviewData?.total_value_locked) * 100
+		) / 100;
+
 	useEffect(() => {
 		dispatch(fetchOverview());
 	}, [dispatch]);
@@ -55,7 +60,7 @@ const Overview = () => {
 					<div className="stats-value">
 						<div className="stat-header">Total Value Locked</div>
 						<div className="price">
-							{Math.round(totalValueLocked * 100) / 100}
+							${Math.round(totalValueLocked * 100) / 100}
 						</div>
 					</div>
 					<div className="stats-value">
@@ -97,7 +102,7 @@ const Overview = () => {
 			<div className="header">CMDX - Volume & Liquidity</div>
 			<Row className="graphs">
 				<Col>
-					<Liquidity sampleData={sampleData} />
+					<Liquidity data={sampleData} liquidity={liquidity} />
 				</Col>
 				<Col>
 					<Volume data={overviewHistoryData} />
