@@ -22,29 +22,6 @@ const sampleData = [
 	{ x: 7, price: 50, liquidity: 30 },
 ];
 
-const SampleData = {
-	day: {
-		data: [1, 2, 3, 4, 5, 6, 7],
-		categories: [
-			"Monday",
-			"Tuesday",
-			"Wednesday",
-			"Thursday",
-			"Friday",
-			"Saturday",
-			"Sunday",
-		],
-	},
-	week: {
-		data: [10, 20, 30, 40, 50, 60],
-		categories: ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6"],
-	},
-	month: {
-		data: [100, 200, 300, 400, 500],
-		categories: ["January", "February", "March", "April", "May"],
-	},
-};
-
 const TokenDetails = () => {
 	const { id } = useParams();
 
@@ -457,7 +434,10 @@ const TokenDetails = () => {
 					<Liquidity data={sampleData} liquidity={liquidity} />
 				</Col>
 				<Col>
-					<Volume data={tokensHistory} />
+					<Volume
+						data={tokensHistory}
+						volume={Math.round(tokensDetails?.total_volume_24h * 100) / 100}
+					/>
 				</Col>
 			</Row>
 			<div

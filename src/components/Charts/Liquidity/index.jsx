@@ -127,7 +127,7 @@ const Liquidity = ({ data, liquidity }) => {
 						<Col>
 							<Tabs
 								defaultActiveKey="day"
-								className="comdex-tabs"
+								className="tabs-col-1"
 								onChange={handleChangeFilter}
 								activeKey={activeFilter}
 								type="card"

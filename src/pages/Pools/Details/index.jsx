@@ -108,7 +108,10 @@ const PoolDetails = () => {
 					<Liquidity data={sampleData} liquidity={totalLiquidity} />
 				</Col>
 				<Col>
-					<Volume data={poolsHistory} />
+					<Volume
+						data={poolsHistory}
+						volume={Math.round(poolsDetails?.base_volume_24h * 100) / 100}
+					/>
 				</Col>
 			</Row>
 		</section>

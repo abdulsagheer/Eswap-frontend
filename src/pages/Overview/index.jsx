@@ -105,7 +105,10 @@ const Overview = () => {
 					<Liquidity data={sampleData} liquidity={liquidity} />
 				</Col>
 				<Col>
-					<Volume data={overviewHistoryData} />
+					<Volume
+						data={overviewHistoryData}
+						volume={Math.round(volume24 * 100) / 100}
+					/>
 				</Col>
 			</Row>
 		</section>

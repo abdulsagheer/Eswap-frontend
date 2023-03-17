@@ -13,6 +13,36 @@
 		margin-top: 20px;
 	}
 
+	.volume-graph {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+
+		.graph-info {
+			padding: 0 0 20px 30px;
+
+			@include mq530px {
+				padding: 0 0 20px 5px;
+			}
+
+			.graph-title {
+				font-weight: 400;
+				font-size: 18px;
+				color: #73aed2;
+			}
+			.graph-price {
+				font-weight: 700;
+				font-size: 32px;
+				color: #ffffff;
+
+				@include mq530px {
+					font-weight: 700;
+					font-size: 25px;
+				}
+			}
+		}
+	}
+
 	.highcharts-title {
 		display: none;
 	}

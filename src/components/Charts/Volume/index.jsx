@@ -4,7 +4,7 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import "./index.scss";
 
-const Volume = ({ data }) => {
+const Volume = ({ data, volume }) => {
 	const [chartData, setChartData] = useState(null);
 	const [activeTab, setActiveTab] = useState("day");
 
@@ -85,15 +85,21 @@ const Volume = ({ data }) => {
 
 	return (
 		<div className="volume">
-			<Tabs
-				onClick={handleTabChange}
-				activeKey={[activeTab]}
-				mode="horizontal"
-				defaultActiveKey="day"
-				className="comdex-tabs"
-				type="card"
-				items={tabItems}
-			/>
+			<div className="volume-graph">
+				<div className="graph-info">
+					<div className="graph-title">Volume</div>
+					<div className="graph-price">${volume}</div>
+				</div>
+				<Tabs
+					onClick={handleTabChange}
+					activeKey={[activeTab]}
+					mode="horizontal"
+					defaultActiveKey="day"
+					className="comdex-tabs"
+					type="card"
+					items={tabItems}
+				/>
+			</div>
 			{chartData && (
 				<HighchartsReact
 					highcharts={Highcharts}
