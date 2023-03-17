@@ -9,13 +9,54 @@ const Liquidity = ({ data, liquidity }) => {
 	const [activeTab, setActiveTab] = useState("price");
 	const [activeFilter, setActiveFilter] = useState("all");
 
-	const handleChangeTab = (key) => {
+	const handleTabChange = (key) => {
 		setActiveTab(key);
 	};
 
-	const handleChangeFilter = (key) => {
-		setActiveFilter(key);
+	const handleFilterChange = (e) => {
+		setActiveFilter(e.key);
 	};
+
+	const filteredData = data?.slice(-30).map((d) => {
+		const date = new Date(d.timestamp);
+		const day = date.toLocaleString("default", { weekday: "long" });
+		const week = `Week ${getWeekNumber(date)}`;
+		const month = date.toLocaleString("default", { month: "long" });
+		return {
+			day,
+			week,
+			month,
+			price: d.tvl,
+			liquidity: d.volume_24h,
+		};
+	});
+
+	const getOptions = (dataKey) => {
+		const options = {
+			title: {
+				text: `${dataKey.charAt(0).toUpperCase() + dataKey.slice(1)} Graph`,
+			},
+			xAxis: {
+				categories: filteredData?.map((d) => d[activeFilter]),
+				title: {
+					text: "X-Axis",
+				},
+			},
+			yAxis: {
+				title: {
+					text: "Y-Axis",
+				},
+			},
+			series: [
+				{
+					name: `${dataKey.charAt(0).toUpperCase() + dataKey.slice(1)}`,
+					data: filteredData?.map((d) => d[dataKey]),
+				},
+			],
+		};
+		return options;
+	};
+
 	const tabItems = [
 		{
 			label: "Day",
@@ -50,60 +91,8 @@ const Liquidity = ({ data, liquidity }) => {
 		}
 	};
 
-	const getPriceOptions = () => {
-		const filteredData = getFilteredData(data);
-		const options = {
-			title: {
-				text: "Price Graph",
-			},
-			xAxis: {
-				title: {
-					text: "X-Axis",
-				},
-			},
-			yAxis: {
-				title: {
-					text: "Y-Axis",
-				},
-			},
-			series: [
-				{
-					name: "Price",
-					data: filteredData.map((d) => ({ x: d.x, y: d.price })),
-				},
-			],
-		};
-		return options;
-	};
-
-	const getLiquidityOptions = () => {
-		const filteredData = getFilteredData(sampleData);
-		const options = {
-			title: {
-				text: "Liquidity Graph",
-			},
-			xAxis: {
-				title: {
-					text: "X-Axis",
-				},
-			},
-			yAxis: {
-				title: {
-					text: "Y-Axis",
-				},
-			},
-			series: [
-				{
-					name: "Liquidity",
-					data: filteredData.map((d) => ({ x: d.x, y: d.liquidity })),
-				},
-			],
-		};
-		return options;
-	};
-
 	const options =
-		activeTab === "price" ? getPriceOptions() : getLiquidityOptions();
+		activeTab === "price" ? getOptions("price") : getOptions("liquidity");
 
 	return (
 		<div className="liquidity">
@@ -118,7 +107,7 @@ const Liquidity = ({ data, liquidity }) => {
 							<Tabs
 								defaultActiveKey="price"
 								className="comdex-tabs"
-								onChange={handleChangeTab}
+								onChange={handleTabChange}
 								activeKey={activeTab}
 								type="card"
 								items={priceAndliquidity}
@@ -128,8 +117,8 @@ const Liquidity = ({ data, liquidity }) => {
 							<Tabs
 								defaultActiveKey="day"
 								className="tabs-col-1"
-								onChange={handleChangeFilter}
-								activeKey={activeFilter}
+								onChange={handleFilterChange}
+								selectedKeys={[activeFilter]}
 								type="card"
 								items={tabItems}
 							/>
@@ -141,5 +130,10 @@ const Liquidity = ({ data, liquidity }) => {
 		</div>
 	);
 };
+
+function getWeekNumber(date) {
+	const onejan = new Date(date.getFullYear(), 0, 1);
+	return Math.ceil(((date - onejan) / 86400000 + onejan.getDay() + 1) / 7);
+}
 
 export default Liquidity;

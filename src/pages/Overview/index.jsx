@@ -102,7 +102,7 @@ const Overview = () => {
 			<div className="header">CMDX - Volume & Liquidity</div>
 			<Row className="graphs">
 				<Col>
-					<Liquidity data={sampleData} liquidity={liquidity} />
+					<Liquidity data={overviewHistoryData} liquidity={liquidity} />
 				</Col>
 				<Col>
 					<Volume
