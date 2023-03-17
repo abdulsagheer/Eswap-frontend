@@ -90,7 +90,7 @@ const Overview = () => {
 							style={{
 								color: `${volume24change < 0 ? "red" : "green"}`,
 							}}>
-							${Math.round(volume24change * 100) / 100}
+							{Math.round(volume24change * 100) / 100}%
 						</div>
 					</div>
 					<div className="stats-value">
