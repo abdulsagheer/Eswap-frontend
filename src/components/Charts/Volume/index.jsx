@@ -67,8 +67,8 @@ const Volume = ({ data, volume }) => {
 		setChartData(chartData);
 	}, [data]);
 
-	const handleTabChange = (tab) => {
-		setActiveTab(tab.key);
+	const handleTabChange = (key) => {
+		setActiveTab(key);
 	};
 
 	const tabItems = [
@@ -91,7 +91,7 @@ const Volume = ({ data, volume }) => {
 					<div className="graph-price">${volume}</div>
 				</div>
 				<Tabs
-					onClick={handleTabChange}
+					onChange={handleTabChange}
 					activeKey={[activeTab]}
 					mode="horizontal"
 					defaultActiveKey="day"
