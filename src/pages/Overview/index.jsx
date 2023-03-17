@@ -11,16 +11,6 @@ import {
 } from "../../redux/overview/slice";
 import { useSelector, useDispatch } from "react-redux";
 
-const sampleData = [
-	{ x: 1, price: 10, liquidity: 5 },
-	{ x: 2, price: 20, liquidity: 10 },
-	{ x: 3, price: 30, liquidity: 15 },
-	{ x: 4, price: 25, liquidity: 12 },
-	{ x: 5, price: 35, liquidity: 20 },
-	{ x: 6, price: 45, liquidity: 25 },
-	{ x: 7, price: 50, liquidity: 30 },
-];
-
 const Overview = () => {
 	const dispatch = useDispatch();
 	const overviewData = useSelector((state) => state.overview.overview?.data);

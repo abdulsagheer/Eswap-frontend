@@ -12,16 +12,6 @@ import Volume from "../../../components/Charts/Volume";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchTokenById, fetchTokenHistory } from "../../../redux/tokens/slice";
 
-const sampleData = [
-	{ x: 1, price: 10, liquidity: 5 },
-	{ x: 2, price: 20, liquidity: 10 },
-	{ x: 3, price: 30, liquidity: 15 },
-	{ x: 4, price: 25, liquidity: 12 },
-	{ x: 5, price: 35, liquidity: 20 },
-	{ x: 6, price: 45, liquidity: 25 },
-	{ x: 7, price: 50, liquidity: 30 },
-];
-
 const TokenDetails = () => {
 	const { id } = useParams();
 
@@ -431,7 +421,7 @@ const TokenDetails = () => {
 			<div className="header">CMDX - Volume & Liquidity</div>
 			<Row className="graphs">
 				<Col>
-					<Liquidity data={sampleData} liquidity={liquidity} />
+					<Liquidity data={tokensHistory} liquidity={liquidity} />
 				</Col>
 				<Col>
 					<Volume

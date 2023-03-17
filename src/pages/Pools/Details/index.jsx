@@ -105,7 +105,7 @@ const PoolDetails = () => {
 			<div className="header">CMDX - Volume & Liquidity</div>
 			<Row className="graphs">
 				<Col>
-					<Liquidity data={sampleData} liquidity={totalLiquidity} />
+					<Liquidity data={poolsHistory} liquidity={totalLiquidity} />
 				</Col>
 				<Col>
 					<Volume
