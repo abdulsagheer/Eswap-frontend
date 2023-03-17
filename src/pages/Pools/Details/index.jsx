@@ -20,29 +20,6 @@ const sampleData = [
 	{ x: 7, price: 50, liquidity: 30 },
 ];
 
-const SampleData = {
-	day: {
-		data: [1, 2, 3, 4, 5, 6, 7],
-		categories: [
-			"Monday",
-			"Tuesday",
-			"Wednesday",
-			"Thursday",
-			"Friday",
-			"Saturday",
-			"Sunday",
-		],
-	},
-	week: {
-		data: [10, 20, 30, 40, 50, 60],
-		categories: ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6"],
-	},
-	month: {
-		data: [100, 200, 300, 400, 500],
-		categories: ["January", "February", "March", "April", "May"],
-	},
-};
-
 const PoolDetails = () => {
 	const { id } = useParams();
 
@@ -133,7 +110,7 @@ const PoolDetails = () => {
 					<Liquidity sampleData={sampleData} />
 				</Col>
 				<Col>
-					<Volume SampleData={SampleData} />
+					<Volume data={poolsHistory} />
 				</Col>
 			</Row>
 		</section>

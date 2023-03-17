@@ -57,7 +57,7 @@ const TokenDetails = () => {
 	}, [dispatch]);
 
 	useEffect(() => {
-		dispatch(fetchTokenHistory);
+		dispatch(fetchTokenHistory());
 	}, [dispatch]);
 
 	console.log("tokensDetails", tokensDetails);
@@ -457,7 +457,7 @@ const TokenDetails = () => {
 					<Liquidity sampleData={sampleData} />
 				</Col>
 				<Col>
-					<Volume SampleData={SampleData} />
+					<Volume data={tokensHistory} />
 				</Col>
 			</Row>
 			<div
