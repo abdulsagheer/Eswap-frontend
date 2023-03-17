@@ -18,6 +18,11 @@
 		flex-direction: row;
 		justify-content: space-between;
 
+		@include mq530px {
+			text-align: center;
+			flex-direction: column;
+		}
+
 		.graph-info {
 			padding: 0 0 20px 30px;
 
@@ -34,6 +39,7 @@
 				font-weight: 700;
 				font-size: 32px;
 				color: #ffffff;
+				margin-top: 10px;
 
 				@include mq530px {
 					font-weight: 700;
