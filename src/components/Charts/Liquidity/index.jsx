@@ -6,56 +6,119 @@ import "./index.scss";
 import { Col, Row } from "../../common";
 
 const Liquidity = ({ data, liquidity, price }) => {
-	const [activeTab, setActiveTab] = useState("price");
-	const [activeFilter, setActiveFilter] = useState("day");
+	// Initialize state variables
+	const [timeFrame, setTimeFrame] = useState("day");
+	const [dataType, setDataType] = useState("price");
 
-	const handleTabChange = (key) => {
-		console.log(activeTab);
-		setActiveTab(key);
-	};
+	// Prepare data for the graph
+	const priceData = [];
+	const liquidityData = [];
 
-	const handleFilterChange = (key) => {
-		setActiveFilter(key);
-	};
-
-	const filteredData = data?.slice(-30).map((d) => {
-		const date = new Date(d.timestamp);
-		const day = date.toLocaleString("default", { weekday: "long" });
-		const week = `Week ${getWeekNumber(date)}`;
-		const month = date.toLocaleString("default", { month: "long" });
-		return {
-			day,
-			week,
-			month,
-			price: d.tvl,
-			liquidity: d.volume_24h,
-		};
+	// Loop through the data and add to the arrays based on selected time frame
+	const priceByDay = {};
+	const priceByWeek = {};
+	const priceByMonth = {};
+	const liquidityByDay = {};
+	const liquidityByWeek = {};
+	const liquidityByMonth = {};
+	data?.forEach((item) => {
+		const date = new Date(item.timestamp);
+		const day = date.getDay(); // 0 (Sunday) to 6 (Saturday)
+		const week = getWeekNumber(date);
+		const month = date.getMonth(); // 0 (January) to 11 (December)
+		priceByDay[day] = item.tvl;
+		priceByWeek[week] = item.tvl;
+		priceByMonth[month] = item.tvl;
+		liquidityByDay[day] = item.volume_24h / item.tvl;
+		liquidityByWeek[week] = item.volume_24h / item.tvl;
+		liquidityByMonth[month] = item.volume_24h / item.tvl;
 	});
 
-	const getOptions = (dataKey) => {
-		const options = {
+	// Get selected data based on time frame and data type
+	let selectedData = [];
+	let categories = [];
+	switch (timeFrame) {
+		case "day":
+			selectedData =
+				dataType === "price"
+					? Object.values(priceByDay)
+					: Object.values(liquidityByDay);
+			categories = Object.keys(priceByDay).map(
+				(day) =>
+					[
+						"Sunday",
+						"Monday",
+						"Tuesday",
+						"Wednesday",
+						"Thursday",
+						"Friday",
+						"Saturday",
+					][day]
+			);
+			break;
+		case "week":
+			selectedData =
+				dataType === "price"
+					? Object.values(priceByWeek)
+					: Object.values(liquidityByWeek);
+			categories = Object.keys(priceByWeek).map((week) => `Week ${week}`);
+			break;
+		case "month":
+			selectedData =
+				dataType === "price"
+					? Object.values(priceByMonth)
+					: Object.values(liquidityByMonth);
+			categories = [
+				"January",
+				"February",
+				"March",
+				"April",
+				"May",
+				"June",
+				"July",
+				"August",
+				"September",
+				"October",
+				"November",
+				"December",
+			];
+			break;
+		default:
+			break;
+	}
+
+	// Create Highcharts options
+	const options = {
+		title: {
+			text: "Price and Liquidity",
+		},
+		xAxis: {
+			categories,
 			title: {
-				text: `${dataKey.charAt(0).toUpperCase() + dataKey.slice(1)} Graph`,
+				text: "Time",
 			},
-			xAxis: {
-				categories: filteredData?.map((d) => d[activeFilter]),
-				title: {
-					text: "X-Axis",
-				},
+		},
+		yAxis: {
+			title: {
+				text: dataType === "price" ? "Price" : "Liquidity",
 			},
-			yAxis: {
-				title: {
-					text: "Y-Axis",
-				},
+		},
+		series: [
+			{
+				name: dataType === "price" ? "Price" : "Liquidity",
+				data: selectedData,
 			},
-			series: [
-				{
-					name: `${dataKey.charAt(0).toUpperCase() + dataKey.slice(1)}`,
-					data: filteredData?.map((d) => d[dataKey]),
-				},
-			],
-		};
-		return options;
+		],
+	};
+
+	// Handle menu tab selection
+	const handleTimeFrameSelect = (key) => {
+		setTimeFrame(key);
+	};
+
+	// Handle menu tab selection
+	const handleDataTypeSelect = (key) => {
+		setDataType(key);
 	};
 
 	const tabItems = [
@@ -79,18 +142,16 @@ const Liquidity = ({ data, liquidity, price }) => {
 			key: "liquidity",
 		},
 	];
-	const options =
-		activeTab === "price" ? getOptions("price") : getOptions("liquidity");
 
 	return (
 		<div className="liquidity">
 			<div className="graph-tabs">
 				<div className="graph-info">
 					<div className="graph-title">
-						{activeTab === "liquidity" ? "Liquidity" : "Price"}
+						{dataType === "liquidity" ? "Liquidity" : "Price"}
 					</div>
 					<div className="graph-price">
-						${activeTab === "liquidity" ? liquidity : price}
+						${dataType === "liquidity" ? liquidity : price}
 					</div>
 				</div>
 				<div className="filter">
@@ -99,8 +160,8 @@ const Liquidity = ({ data, liquidity, price }) => {
 							<Tabs
 								defaultActiveKey="price"
 								className="comdex-tabs"
-								onChange={handleTabChange}
-								activeKey={activeTab}
+								onChange={handleDataTypeSelect}
+								activeKey={dataType}
 								type="card"
 								items={priceAndliquidity}
 							/>
@@ -109,8 +170,8 @@ const Liquidity = ({ data, liquidity, price }) => {
 							<Tabs
 								defaultActiveKey="day"
 								className="tabs-col-1"
-								onChange={handleFilterChange}
-								selectedKeys={[activeFilter]}
+								onChange={handleTimeFrameSelect}
+								selectedKeys={[timeFrame]}
 								type="card"
 								items={tabItems}
 							/>
