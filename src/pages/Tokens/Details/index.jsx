@@ -30,11 +30,21 @@ const TokenDetails = () => {
 	console.log("tokensDetails", tokensDetails);
 	console.log("tokens History", tokensHistory);
 
-	const price = tokensDetails?.price;
+	const price = Math.round(tokensDetails?.price * 100) / 100;
 	const volume = tokensDetails?.total_volume_24h;
 	const priceChange = tokensDetails?.price_24h_change;
 	const volumeChange = tokensDetails?.total_volume_24h_change;
 	const liquidity = Math.round(tokensDetails?.liquidity * 100) / 100;
+
+	let tokensGraphData = tokensHistory?.map(
+		({ liquidity, price, timestamp, volume_24h }) => {
+			return {
+				tvl: liquidity * price,
+				volume_24h,
+				timestamp,
+			};
+		}
+	);
 
 	const data = [
 		{
@@ -421,7 +431,11 @@ const TokenDetails = () => {
 			<div className="header">CMDX - Volume & Liquidity</div>
 			<Row className="graphs">
 				<Col>
-					<Liquidity data={tokensHistory} liquidity={liquidity} />
+					<Liquidity
+						data={tokensGraphData}
+						liquidity={liquidity}
+						price={price}
+					/>
 				</Col>
 				<Col>
 					<Volume

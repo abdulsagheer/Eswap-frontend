@@ -43,6 +43,20 @@ const PoolDetails = () => {
 	const liquidity = poolsDetails?.total_liquidity_24h_change;
 	const volumeChange = poolsDetails?.total_volume_24h_change;
 	const volumeColor = volumeChange < 0;
+	const price =
+		Math.round(
+			(poolsDetails?.total_volume_24h / poolsDetails?.total_liquidity) * 100
+		) / 100;
+
+	let poolsGraphData = poolsHistory?.map(
+		({ timestamp, liquidity, volume_24h }) => {
+			return {
+				tvl: liquidity * price,
+				volume_24h,
+				timestamp,
+			};
+		}
+	);
 
 	return (
 		<section>
@@ -105,7 +119,11 @@ const PoolDetails = () => {
 			<div className="header">CMDX - Volume & Liquidity</div>
 			<Row className="graphs">
 				<Col>
-					<Liquidity data={poolsHistory} liquidity={totalLiquidity} />
+					<Liquidity
+						data={poolsGraphData}
+						liquidity={totalLiquidity}
+						price={price}
+					/>
 				</Col>
 				<Col>
 					<Volume
