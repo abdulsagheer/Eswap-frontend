@@ -5,16 +5,17 @@ import HighchartsReact from "highcharts-react-official";
 import "./index.scss";
 import { Col, Row } from "../../common";
 
-const Liquidity = ({ data, liquidity }) => {
+const Liquidity = ({ data, liquidity, price }) => {
 	const [activeTab, setActiveTab] = useState("price");
-	const [activeFilter, setActiveFilter] = useState("all");
+	const [activeFilter, setActiveFilter] = useState("day");
 
 	const handleTabChange = (key) => {
+		console.log(activeTab);
 		setActiveTab(key);
 	};
 
-	const handleFilterChange = (e) => {
-		setActiveFilter(e.key);
+	const handleFilterChange = (key) => {
+		setActiveFilter(key);
 	};
 
 	const filteredData = data?.slice(-30).map((d) => {
@@ -78,19 +79,6 @@ const Liquidity = ({ data, liquidity }) => {
 			key: "liquidity",
 		},
 	];
-	const getFilteredData = (data) => {
-		switch (activeFilter) {
-			case "day":
-				return data.slice(-1);
-			case "week":
-				return data.slice(-7);
-			case "month":
-				return data.slice(-30);
-			default:
-				return data;
-		}
-	};
-
 	const options =
 		activeTab === "price" ? getOptions("price") : getOptions("liquidity");
 
@@ -98,8 +86,12 @@ const Liquidity = ({ data, liquidity }) => {
 		<div className="liquidity">
 			<div className="graph-tabs">
 				<div className="graph-info">
-					<div className="graph-title">Liquidity</div>
-					<div className="graph-price">${liquidity}</div>
+					<div className="graph-title">
+						{activeTab === "liquidity" ? "Liquidity" : "Price"}
+					</div>
+					<div className="graph-price">
+						${activeTab === "liquidity" ? liquidity : price}
+					</div>
 				</div>
 				<div className="filter">
 					<Row className="tabs">

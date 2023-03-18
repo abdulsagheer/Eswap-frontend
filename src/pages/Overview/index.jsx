@@ -34,7 +34,9 @@ const Overview = () => {
 	console.log("overview", overviewData);
 	console.log("overview History", overviewHistoryData);
 
-	const totalValueLocked = overviewData?.total_value_locked;
+	const totalValueLocked =
+		Math.round(overviewData?.total_value_locked * 100) / 100;
+
 	const volume24 = overviewData?.voume_24h;
 	const fee = overviewData?.fee_distributed;
 	const volume24change = overviewData?.volume_24h_change;
@@ -92,7 +94,11 @@ const Overview = () => {
 			<div className="header">CMDX - Volume & Liquidity</div>
 			<Row className="graphs">
 				<Col>
-					<Liquidity data={overviewHistoryData} liquidity={liquidity} />
+					<Liquidity
+						data={overviewHistoryData}
+						liquidity={liquidity}
+						price={totalValueLocked}
+					/>
 				</Col>
 				<Col>
 					<Volume
