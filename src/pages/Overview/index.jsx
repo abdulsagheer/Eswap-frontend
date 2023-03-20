@@ -38,8 +38,8 @@ const Overview = () => {
 		Math.round(overviewData?.total_value_locked * 100) / 100;
 
 	const volume24 = overviewData?.voume_24h;
-	const fee = overviewData?.fee_distributed;
 	const volume24change = overviewData?.volume_24h_change;
+	const price = Math.round((totalValueLocked / liquidity) * 100) / 100;
 
 	return (
 		<section>
@@ -68,7 +68,7 @@ const Overview = () => {
 					<div className="stats-value">
 						<div className="stat-header">CMDX Price</div>
 						<div className="price">
-							${Math.round(fee * 100) / 100}
+							${price}
 							{/* <span className="percentage">
 								<img src={Upwards} alt="upwards" />
 								5.02%
@@ -97,7 +97,7 @@ const Overview = () => {
 					<Liquidity
 						data={overviewHistoryData}
 						liquidity={liquidity}
-						price={totalValueLocked}
+						price={price}
 					/>
 				</Col>
 				<Col>
