@@ -26,9 +26,9 @@ const Liquidity = ({ data, liquidity, price }) => {
 		const day = date.getDay(); // 0 (Sunday) to 6 (Saturday)
 		const week = getWeekNumber(date);
 		const month = date.getMonth(); // 0 (January) to 11 (December)
-		priceByDay[day] = item.tvl;
-		priceByWeek[week] = item.tvl;
-		priceByMonth[month] = item.tvl;
+		priceByDay[day] = item.price;
+		priceByWeek[week] = item.price;
+		priceByMonth[month] = item.price;
 		liquidityByDay[day] = item.volume_24h / item.tvl;
 		liquidityByWeek[week] = item.volume_24h / item.tvl;
 		liquidityByMonth[month] = item.volume_24h / item.tvl;

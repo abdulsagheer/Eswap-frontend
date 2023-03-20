@@ -47,6 +47,17 @@ const Overview = () => {
 	const volume24change = overviewData?.volume_24h_change;
 	const price = Math.round(tokensDetails?.price * 100) / 100;
 
+	let poolsGraphData = overviewHistoryData?.map(
+		({ timestamp, tvl, volume_24h }) => {
+			return {
+				price: volume_24h / (volume_24h / tvl),
+				tvl,
+				volume_24h,
+				timestamp,
+			};
+		}
+	);
+
 	return (
 		<section>
 			<h1 className="header">Overview - cSwap</h1>
@@ -101,7 +112,7 @@ const Overview = () => {
 			<Row className="graphs">
 				<Col>
 					<Liquidity
-						data={overviewHistoryData}
+						data={poolsGraphData}
 						liquidity={liquidity}
 						price={price}
 					/>

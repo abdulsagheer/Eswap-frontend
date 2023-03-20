@@ -41,12 +41,15 @@ const PoolDetails = () => {
 	let poolsGraphData = poolsHistory?.map(
 		({ timestamp, liquidity, volume_24h }) => {
 			return {
+				price: volume_24h / liquidity,
 				tvl: liquidity * price,
 				volume_24h,
 				timestamp,
 			};
 		}
 	);
+
+	console.log("poolsGraphData", poolsGraphData);
 
 	return (
 		<section>
