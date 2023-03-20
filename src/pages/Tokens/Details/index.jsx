@@ -37,9 +37,9 @@ const TokenDetails = () => {
 	const liquidity = Math.round(tokensDetails?.liquidity * 100) / 100;
 
 	let tokensGraphData = tokensHistory?.map(
-		({ liquidity, price, timestamp, volume_24h }) => {
+		({ price, timestamp, volume_24h }) => {
 			return {
-				tvl: liquidity * price,
+				tvl: price,
 				volume_24h,
 				timestamp,
 			};
