@@ -380,7 +380,7 @@ const TokenDetails = () => {
 			<div className="token-values">
 				<div>
 					<img src={cmdx} alt={"token"} width="50" />
-					<span className="token-header">CMDX</span>
+					<span className="token-header">{tokensDetails?.symbol}</span>
 				</div>
 				<div className="statistics">
 					<div className="token-value">
