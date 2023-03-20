@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import "./index.scss";
 import Swap from "../../assets/images/cSwap-light-logo.svg";
 import Upwards from "../../assets/images/upwards.svg";
@@ -10,6 +10,7 @@ import {
 	fetchOverviewHistory,
 } from "../../redux/overview/slice";
 import { useSelector, useDispatch } from "react-redux";
+import { fetchTokenById } from "../../redux/tokens/slice";
 
 const Overview = () => {
 	const dispatch = useDispatch();
@@ -17,6 +18,11 @@ const Overview = () => {
 	const overviewHistoryData = useSelector(
 		(state) => state.overview?.history?.data
 	);
+	const tokensDetails = useSelector((state) => state.tokens.tokens?.data);
+	useEffect(() => {
+		dispatch(fetchTokenById("CMDX"));
+	}, [dispatch]);
+	console.log("tokensDetails", tokensDetails);
 
 	let liquidity =
 		Math.round(
@@ -39,7 +45,7 @@ const Overview = () => {
 
 	const volume24 = overviewData?.voume_24h;
 	const volume24change = overviewData?.volume_24h_change;
-	const price = Math.round((totalValueLocked / liquidity) * 100) / 100;
+	const price = Math.round(tokensDetails?.price * 100) / 100;
 
 	return (
 		<section>
