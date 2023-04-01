@@ -9,7 +9,7 @@ export const AxiosRequest = async (methods, url, header, body) => {
 			: {
 					"Content-Type": "application/json",
 			  },
-		data: body,
+		data: JSON.stringify(body),
 	};
 
 	// Axios instance
